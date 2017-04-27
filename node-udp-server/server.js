@@ -10,8 +10,16 @@ server.on('listening', function () {
 });
 
 server.on('message', function (message, remote) {
-    console.log(remote.address + ':' + remote.port +' - ' + message);
+    var parsedMessage = JSON.parse(message.toString());
+    console.log(remote.address + ':' + remote.port +' - ' + parsedMessage);
 
 });
+
+
+server.on('error', (err) => {
+  console.log(`server error:\n${err.stack}`);
+  server.close();
+});
+
 
 server.bind(PORT, HOST);
