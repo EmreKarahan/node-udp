@@ -9,16 +9,16 @@ server.on('listening', function () {
     console.log('UDP Server listening on ' + address.address + ":" + address.port);
 });
 
-server.on('message', function (message, remote) {
+server.on('message', (message, remote) => {
     var parsedMessage = JSON.parse(message.toString());
-    console.log(remote.address + ':' + remote.port +' - ' + parsedMessage);
+    console.log(remote.address + ':' + remote.port + ' - ' + parsedMessage);
 
 });
 
 
 server.on('error', (err) => {
-  console.log(`server error:\n${err.stack}`);
-  server.close();
+    console.log(`server error:\n${err.stack}`);
+    server.close();
 });
 
 
